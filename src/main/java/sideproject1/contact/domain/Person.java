@@ -15,5 +15,5 @@ public class Person {
     Long id;
 
     private String name;
-    private String phoneNumer;
+    private String phoneNumber;
 }
