@@ -1,10 +1,9 @@
 package sideproject1.contact.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.http.HttpStatus;
+import org.springframework.web.bind.annotation.*;
+import sideproject1.contact.controller.dto.PersonDto;
 import sideproject1.contact.domain.Person;
 import sideproject1.contact.service.PersonService;
 
@@ -18,5 +17,16 @@ public class PersonController {
     @GetMapping("/{id}")
     public Person getPerson(@PathVariable Long id ){
         return personService.getPerson(id);
+    }
+
+    @PostMapping
+    @ResponseStatus(HttpStatus.CREATED)
+    public void postPerson(@RequestBody PersonDto personDto){
+        personService.put(personDto);
+    }
+
+    @PutMapping("/{id}")
+    public void modifyPerson(@PathVariable Long id , @RequestBody PersonDto personDto){
+        personService.modify(id, personDto);
     }
 }
